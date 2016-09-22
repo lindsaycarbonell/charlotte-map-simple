@@ -1,3 +1,14 @@
 #mapid {
   height: 300px;
 }
+
+.leaflet-container.dark .map-tooltip .close, .leaflet-control-attribution:after, .leaflet-control-layers-toggle, .leaflet-control-zoom-in, .leaflet-control-zoom-out, .leaflet-popup-close-button, .map-tooltip .close, .mapbox-icon{
+  background-image:none;
+}
+
+.leaflet-bar{
+  box-shadow:none;
+}
+.leaflet-bar a, .leaflet-bar a:hover{
+  border-bottom-color:rgba(0,0,0,.4);
+}
