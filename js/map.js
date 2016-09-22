@@ -38,15 +38,14 @@ window.onload = function() { init() };
       L.mapbox.accessToken = 'pk.eyJ1IjoibGluZHNheWNhcmJvbmVsbCIsImEiOiJjaXRlajNhd2cwNjBkMzJvOW04OWQ0dm5xIn0.GGAg70cv_JpPUXxFvkdY-w';
       console.log("build map");
 
-      mymap = L.map('mapid').setView([35.227087, -80.843127], 5);
+      mymap = L.map('mapid').setView([35.227087, -80.843127], 10);
 
       var places = mapData;
       var markers = [];
 
       L.tileLayer('https://api.mapbox.com/styles/v1/lindsaycarbonell/citevew8e00672hpbh8hg20af/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGluZHNheWNhcmJvbmVsbCIsImEiOiJjaXRlajNhd2cwNjBkMzJvOW04OWQ0dm5xIn0.GGAg70cv_JpPUXxFvkdY-w', {
       attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-      id: 'mapbox.light',
-      minZoom: 10
+      id: 'mapbox.light'
     }).addTo(mymap);
 
     console.log(mymap);
