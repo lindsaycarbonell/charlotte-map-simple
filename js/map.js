@@ -12,51 +12,48 @@ window.onload = function() { init() };
                      simpleSheet: true } );
   }
 
-  function build(mapData){
+  function build(data){
     console.log("sucessfully processed");
-    console.log(mapData[0]);
+    console.log(data[0]);
     lats = [];
     longs = [];
-    for (i in mapData){
-      console.log(mapData[i].lat);
+    for (i in data){
+      // console.log(data[i].lat);
     }
-    var mapData = mapData;
+    var mapData = data;
+    buildMap(mapData);
   }
 
-$.getJSON('assets/data.json', function(data){
-      landfillData = data;
-      console.log(data);
-      if (mymap == undefined){
-        buildMap(landfillData);
-      }
-    });
+// $.getJSON('assets/data.json', function(data){
+//       landfillData = data;
+//       console.log(data);
+//       if (mymap == undefined){
+//         buildMap(landfillData);
+//       }
+//     });
+
 
 
     function buildMap(mapData) {
+      L.mapbox.accessToken = 'pk.eyJ1IjoibGluZHNheWNhcmJvbmVsbCIsImEiOiJjaXRlajNhd2cwNjBkMzJvOW04OWQ0dm5xIn0.GGAg70cv_JpPUXxFvkdY-w';
       console.log("build map");
 
       mymap = L.map('mapid').setView([35.227087, -80.843127], 5);
 
-
-      // var landfills = data.BIGGEST;
       var places = mapData;
-      // console.log(data.BIGGEST);
       var markers = [];
 
-      L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+      L.tileLayer('https://api.mapbox.com/styles/v1/lindsaycarbonell/citevew8e00672hpbh8hg20af/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGluZHNheWNhcmJvbmVsbCIsImEiOiJjaXRlajNhd2cwNjBkMzJvOW04OWQ0dm5xIn0.GGAg70cv_JpPUXxFvkdY-w', {
       attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
       id: 'mapbox.light',
-      zoom: 12,
-      accessToken: 'pk.eyJ1IjoibGluZHNheWNhcmJvbmVsbCIsImEiOiJjaXRlajNhd2cwNjBkMzJvOW04OWQ0dm5xIn0.GGAg70cv_JpPUXxFvkdY-w'
-    })
-    .addTo(mymap);
+      minZoom: 10
+    }).addTo(mymap);
 
-
-      L.mapbox.styleLayer('mapbox://styles/mapbox/emerald-v8');
-
-
+    console.log(mymap);
 
     mymap.scrollWheelZoom.disable();
+
+    console.log(places);
 
     for (var x in places){
       var thisMarker = L.marker([places[x].lat, places[x].long])
@@ -65,7 +62,9 @@ $.getJSON('assets/data.json', function(data){
       thisMarker.on('click', function(e){
         mymap.panTo([places[x].lat, places[x].long]);
       });
+      console.log(thisMarker);
       markers.push(thisMarker);
+      console.log("markers: " + markers);
       markers[x].addTo(mymap);
     }
 
