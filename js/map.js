@@ -53,11 +53,9 @@ window.onload = function() { init() };
         });
 
         var thisMarker = L.marker([places[x].lat, places[x].long], {icon: thisIcon})
-            .bindPopup("<h2>" + places[x].short_name + "</h2>")
+            .bindPopup("<h2>" + places[x].short_name + "</h2><p>" + places[x].description + "</p>" )
             .openPopup();
-        thisMarker.on('click', function(e){
-          mymap.panTo([places[x].lat, places[x].long]);
-        });
+
         console.log(thisMarker);
         markers.push(thisMarker);
         console.log("markers: " + markers);
