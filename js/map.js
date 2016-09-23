@@ -34,6 +34,24 @@ window.onload = function() { init() };
 //       }
 //     });
 
+var isMobile;
+
+$(window).resize(function() {
+      // console.log("RESIZE");
+
+      var width = $(window).width();
+      if (tempWidth !== width) {
+        if (width <= 840) {
+          isMobile = true;
+        } else {
+          isMobile = false;
+        }
+      }
+
+      tempWidth = width;
+
+    });
+
 
 
     function buildMap(mapData) {
@@ -55,10 +73,6 @@ window.onload = function() { init() };
 
     // console.log(places);
 
-
-
-
-
     for (var x in places){
 
 
@@ -71,32 +85,41 @@ window.onload = function() { init() };
       });
       var thisMarker = L.marker([places[x].lat, places[x].long], {icon: thisIcon});
 
-      thisMarker.on('click', function(e){
-  
-           mymap.panTo(e.latlng);
-           mymap.setView(e.latlng, 13); //FIX THIS
-          //  console.log("I panned");
-          // console.log(places[x]);
+      if (!isMobile){
 
-            changeSidebar(places[x]);
+        thisMarker.on('click', function(e){
 
+             mymap.panTo(e.latlng);
+             mymap.setView(e.latlng, 13); //FIX THIS
+            //  console.log("I panned");
+            // console.log(places[x]);
 
+            //this exists because I needed something to compare and yeah
+            for (var x in places){
+              var lat_long = {
+                lat: places[x].lat,
+                lng: places[x].long
+              }
 
-         });
-
-         markers.push(thisMarker);
-        // console.log("marker pushed");
-        // console.log(thisMarker);
-        // console.log(markers);
-         markers[x].addTo(mymap);
-        //  console.log("marker added");
-
-
-       }
-
+              console.log(lat_long.lat == e.latlng.lat);
+              if (lat_long.lat == e.latlng.lat){
+                changeSidebar(places[x]);
+              }
+            }
 
 
+           });
 
+           markers.push(thisMarker);
+          // console.log("marker pushed");
+          // console.log(thisMarker);
+          // console.log(markers);
+           markers[x].addTo(mymap);
+          //  console.log("marker added");
+
+
+        }
+      } //window width
 
 
      } //buildMap
@@ -109,11 +132,16 @@ window.onload = function() { init() };
         console.log(thisPlace.short_name);
 
          document.getElementById('side-title').innerHTML = thisPlace.short_name;
+
+         document.getElementById('side-content').innerHTML = thisPlace.description;
+
+         document.getElementById('side-image-box').innerHTML = '<img class="side-image" src="assets/' + thisPlace.image_url + '" />';
+
+
        }
 
 
-      <!-- http://stackoverflow.com/questions/121817/how-do-i-replace-text-inside-a-div-element
-      -->
+
 
 
      }
