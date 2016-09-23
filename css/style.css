@@ -1,5 +1,47 @@
+/*To do:
+Get images working in sidebar for desktop
+Add modal: http://stackoverflow.com/questions/10284419/open-modal-window-from-iframe-into-the-parent*/
+
+
+
 #mapid {
-  height: 300px;
+  height: 550px;
+  width: 80vw;
+  display:inline-block;
+}
+
+#sidebar{
+  display:inline;
+  float:right;
+  height:550px;
+  overflow-y:scroll;
+}
+
+.side-box{
+  width:17vw;
+}
+
+#side-title{
+  margin:0;
+  margin-top:10px;
+}
+
+.side-icon{
+  width:35px;
+  float:left;
+}
+
+.side-image{
+  width:200px;
+  margin-bottom:5px;
+}
+
+.side-image-box:last-child{
+  margin-bottom:0;
+}
+
+.side-content{
+  margin-top:25px;
 }
 
 .leaflet-container.dark .map-tooltip .close, .leaflet-control-attribution:after, .leaflet-control-layers-toggle, .leaflet-control-zoom-in, .leaflet-control-zoom-out, .leaflet-popup-close-button, .map-tooltip .close, .mapbox-icon{
