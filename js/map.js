@@ -58,7 +58,7 @@ $(window).resize(function() {
       // L.mapbox.accessToken = 'pk.eyJ1IjoibGluZHNheWNhcmJvbmVsbCIsImEiOiJjaXRlajNhd2cwNjBkMzJvOW04OWQ0dm5xIn0.GGAg70cv_JpPUXxFvkdY-w';
       // console.log("build map");
 
-      mymap = L.map('mapid').setView([35.227087, -80.843127], 13);
+      mymap = L.map('mapid').setView([35.214806, -80.834441], 15);
       //THE ZOOM IS SET UP HERE DUMMY
 
       var places = mapData;
